@@ -23,7 +23,7 @@ func configureOptions(opts ...Option) handleOpts {
 		return options
 	}
 
-	for i := 0; i < len(opts); i++ {
+	for i := range opts {
 		if opts[i] == nil {
 			continue
 		}

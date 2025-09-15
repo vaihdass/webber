@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-const HeaderKey = "X-L10N-Header"
+const HeaderKey = "X-L10n-Header"
 
 func ExtractLanguage(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {

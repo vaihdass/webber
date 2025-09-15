@@ -22,7 +22,7 @@ func GRPCToHTTPMiddleware(
 }
 
 func extractError(err error) (codes.Code, string, string) {
-	var terr *TypedGRPCStatus
+	var terr *TypedGRPCStatusError
 	if errors.As(err, &terr) {
 		return terr.GRPCStatus().Code(), terr.Error(), terr.Type()
 	}
