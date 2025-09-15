@@ -12,7 +12,7 @@ import (
 )
 
 func (h *ErrorHandler) HandleHTTP(
-	ctx context.Context, w http.ResponseWriter, r *http.Request,
+	ctx context.Context, w http.ResponseWriter, _ *http.Request,
 	operation string, err error, options ...Option,
 ) {
 	if err == nil {
