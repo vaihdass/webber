@@ -8,8 +8,8 @@ type spanLogger interface {
 // handleOpts contains options for error handling.
 type handleOpts struct {
 	fallbackMsg string
-	values      []any
 	span        spanLogger
+	values      []any
 }
 
 // Option is a function that configures handleOpts.

@@ -36,9 +36,7 @@ func (l LoggingLevel) toSlog() slog.Level {
 	var lvl slog.Level
 
 	switch l {
-	case UnknownLogging:
-		lvl = slog.LevelDebug
-	case DebugLogging:
+	case DebugLogging, UnknownLogging:
 		lvl = slog.LevelDebug
 	case InfoLogging:
 		lvl = slog.LevelInfo

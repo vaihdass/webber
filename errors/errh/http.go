@@ -6,9 +6,10 @@ import (
 	"net/http"
 
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
-	"github.com/vaihdass/webber/errors/xerr"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
+
+	"github.com/vaihdass/webber/errors/xerr"
 )
 
 func (h *ErrorHandler) HandleHTTP(

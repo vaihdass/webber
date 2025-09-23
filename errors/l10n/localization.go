@@ -11,8 +11,8 @@ type Localizer func(errorType, language string) (string, bool)
 
 type LocalizedErrorHandler struct {
 	handler     *errh.ErrorHandler
-	defaultLang string
 	localizerFn Localizer
+	defaultLang string
 }
 
 func NewLocalizedErrorHandler(

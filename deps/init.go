@@ -10,7 +10,7 @@ type State struct {
 }
 
 func NewState() *State {
-	return &State{}
+	return &State{} //nolint:exhaustruct
 }
 
 func (s *State) Err() error {

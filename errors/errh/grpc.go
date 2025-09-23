@@ -4,9 +4,10 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/vaihdass/webber/errors/xerr"
 	grpc "google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
+
+	"github.com/vaihdass/webber/errors/xerr"
 )
 
 func (h *ErrorHandler) Handle(ctx context.Context, operation string, err error, options ...Option) error {
