@@ -9,7 +9,7 @@ SHELL                := /usr/bin/env bash
 .DEFAULT_GOAL        := help
 
 #--- Project configuration
-MAIN_BRANCH          ?= main
+MAIN_BRANCH          ?= master
 PROJECT_MODULE       ?= github.com/vaihdass/webber
 
 #--- Test exclusions (folders to skip during testing)
