@@ -6,9 +6,10 @@ import (
 	"net/http"
 
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
-	"github.com/vaihdass/webber/errors/xerr"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
+
+	"github.com/vaihdass/webber/errors/xerr"
 )
 
 // GRPCToHTTPMiddleware is an error handler for HTTP gateway, sets typed HTTP error.
@@ -22,7 +23,7 @@ func GRPCToHTTPMiddleware(
 }
 
 func extractError(err error) (codes.Code, string, string) {
-	var terr *TypedGRPCStatus
+	var terr *TypedGRPCError
 	if errors.As(err, &terr) {
 		return terr.GRPCStatus().Code(), terr.Error(), terr.Type()
 	}

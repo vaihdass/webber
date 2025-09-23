@@ -1,9 +1,10 @@
 module github.com/vaihdass/webber
 
-go 1.24.2
+go 1.24.0
 
 require (
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.27.2
+	github.com/opentracing/opentracing-go v1.2.0
 	google.golang.org/grpc v1.75.1
 	google.golang.org/protobuf v1.36.7
 )

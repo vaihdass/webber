@@ -6,13 +6,14 @@ import (
 	"net/http"
 
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
-	"github.com/vaihdass/webber/errors/xerr"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
+
+	"github.com/vaihdass/webber/errors/xerr"
 )
 
 func (h *ErrorHandler) HandleHTTP(
-	ctx context.Context, w http.ResponseWriter, r *http.Request,
+	ctx context.Context, w http.ResponseWriter, _ *http.Request,
 	operation string, err error, options ...Option,
 ) {
 	if err == nil {

@@ -24,7 +24,7 @@ func newWrapper(xErr, err error) *wrapper {
 }
 
 func TryRewrapTypedErr(err error, newMsg string) error {
-	var ev *errorValues
+	var ev *valuesError
 	if errors.As(err, &ev) {
 		ev.error = xerr.New(ev.error.Type(), newMsg)
 		return newWrapper(ev, err)

@@ -29,16 +29,16 @@ func handleKV(err error, kvs []any) error {
 	return newErrorValues(xErr, kvs)
 }
 
-type errorValues struct {
+type valuesError struct {
 	error  *xerr.Error
 	values []any
 }
 
-func (e errorValues) Error() string {
+func (e valuesError) Error() string {
 	return e.error.Error()
 }
 
-func (e errorValues) Unwrap() error {
+func (e valuesError) Unwrap() error {
 	return e.error
 }
 
@@ -47,14 +47,14 @@ func newErrorValues(err *xerr.Error, kvs []any) error {
 		return err
 	}
 
-	return &errorValues{
+	return &valuesError{
 		error:  err,
 		values: kvs,
 	}
 }
 
 func extractErrorValues(e error, kvs []any) []any {
-	var err *errorValues
+	var err *valuesError
 	if !errors.As(e, &err) {
 		return kvs
 	}

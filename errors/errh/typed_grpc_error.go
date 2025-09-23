@@ -9,48 +9,48 @@ import (
 	"google.golang.org/protobuf/types/known/wrapperspb"
 )
 
-type TypedGRPCStatus struct {
+type TypedGRPCError struct {
 	status  *status.Status
 	errType string
 }
 
-func NewTypedGRPCStatus(st *status.Status, errType string) (*TypedGRPCStatus, error) {
+func NewTypedGRPCStatus(st *status.Status, errType string) (*TypedGRPCError, error) {
 	st, err := setGRPCErrorType(st, errType)
 	if err != nil {
 		return nil, fmt.Errorf("errh.NewTypedGRPCStatus: %w", err)
 	}
 
-	return &TypedGRPCStatus{
+	return &TypedGRPCError{
 		status:  st,
 		errType: errType,
 	}, nil
 }
 
-func ExtractNewTypedGRPCStatus(st *status.Status) (*TypedGRPCStatus, error) {
+func ExtractNewTypedGRPCStatus(st *status.Status) (*TypedGRPCError, error) {
 	errType, ok := getGRPCErrorType(st)
 	if !ok {
 		return nil, errors.New("error type not found")
 	}
 
-	return &TypedGRPCStatus{
+	return &TypedGRPCError{
 		status:  st,
 		errType: errType,
 	}, nil
 }
 
-func (s *TypedGRPCStatus) GRPCStatus() *status.Status {
+func (s *TypedGRPCError) GRPCStatus() *status.Status {
 	return s.status
 }
 
-func (s *TypedGRPCStatus) Type() string {
+func (s *TypedGRPCError) Type() string {
 	return s.errType
 }
 
-func (s *TypedGRPCStatus) Error() string {
+func (s *TypedGRPCError) Error() string {
 	return s.status.Message()
 }
 
-func (s *TypedGRPCStatus) Unwrap() error {
+func (s *TypedGRPCError) Unwrap() error {
 	return s.status.Err()
 }
 
@@ -80,7 +80,7 @@ func getGRPCErrorType(st *status.Status) (string, bool) {
 	var parsed bool
 
 	d := st.Details()
-	for i := 0; i < len(d); i++ {
+	for i := range d {
 		str, ok := d[i].(*wrapperspb.StringValue)
 		if !ok {
 			continue
